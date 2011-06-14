@@ -1,4 +1,4 @@
-<%= form_for @post, :url => { :controller => 'posts', :action => 'update', :id => @post} do |f| %>
+<%= form_for @post, :url => post_path(@post), :html => {:method => :put}  do |f| %>
     <%= f.label :subject, "Subject" %>
     <%= f.text_field :subject %>
     

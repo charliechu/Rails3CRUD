@@ -3,11 +3,11 @@
 	<% @posts.each do |post| %>
   	<li>
   		<%= post.subject %>
-  		<%= link_to 'Show', :controller => 'posts', :action => 'show', :id => post %>
-  		<%= link_to 'Edit', :controller => 'posts', :action => 'edit', :id => post  %>
-  		<%= link_to 'Delete', :controller => 'posts', :action => 'destroy', :id => post, :method => :delete %>
+  		<%= link_to 'Show', post_path(post) %>
+  		<%= link_to 'Edit', edit_post_path(post) %>
+  		<%= link_to 'Delete', post_path(post), :method => :delete %>
   		</li>
 	<% end %>
 </ul>
 
-<%= link_to 'New post', :controller => 'posts', :action => 'new' %>
+<%= link_to 'New post', new_post_path %>

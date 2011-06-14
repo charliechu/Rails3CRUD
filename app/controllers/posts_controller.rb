@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 		@post = Post.new(params[:post])
 		@post.save
 
-		redirect_to :action => :index
+		redirect_to posts_path
 	end
 
 	# By using find method to find the data
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 		@post.update_attributes(params[:post])
 
-		redirect_to :action => :show, :id => @post
+		redirect_to post_path(@post)
 	end
 
 
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 		@post.destroy
 
-		redirect_to :action => :index
+		redirect_to posts_path
 	end
 
 end

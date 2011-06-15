@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   # First to show
   def index
-		# Catch all the data
-		@posts = Post.all
+    # Catch all the data
+    @posts = Post.all
 	end
 
 	# New a empty Post object
@@ -12,14 +12,14 @@ class PostsController < ApplicationController
 	
 	# sending by new.html.erb, initial a new post object and save it, then redirect to indext page 
 	def create
-		@post = Post.new(params[:post])
-		if @post.save
+	  @post = Post.new(params[:post])
+	  if @post.save
       flash[:notice] = 'Post Successfully!'
       redirect_to post_path(@post)
     else
       render :action => "new"
-	  end
-	end
+    end
+  end
 
 	# By using find method to find the data
 	def show

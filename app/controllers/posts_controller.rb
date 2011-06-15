@@ -20,32 +20,32 @@ class PostsController < ApplicationController
     end
   end
 
-	# By using find method to find the data
-	def show
-		@post = Post.find(params[:id])
-	end
+  # By using find method to find the data
+  def show
+    @post = Post.find(params[:id])
+  end
 
-	# 1. Find the data 2. Update to database
-	def edit
-		@post = Post.find(params[:id])
-	end
+  # 1. Find the data 2. Update to database
+  def edit
+    @post = Post.find(params[:id])
+  end
 
-	def update
-		@post = Post.find(params[:id])
+  def update
+    @post = Post.find(params[:id])
 		
-		if @post.update_attributes(params[:post])
-		  redirect_to post_path(@post)
-		else
+    if @post.update_attributes(params[:post])
+      redirect_to post_path(@post)
+    else
       redirect_to edit_post_path(@post) 
-	  end
-	end
+    end
+  end
 
 
-	# delete the data  you choice 
-	def destroy
-		@post = Post.find(params[:id])
-		@post.destroy
+  # delete the data  you choice 
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
 
-		redirect_to posts_path
-	end
+    redirect_to posts_path
+  end
 end

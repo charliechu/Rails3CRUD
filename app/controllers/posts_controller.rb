@@ -14,10 +14,9 @@ class PostsController < ApplicationController
 	def create
 	  @post = Post.new(params[:post])
 	  if @post.save
-      flash[:notice] = 'Post Successfully!'
       redirect_to post_path(@post)
     else
-      render :action => "new"
+      redirect_to new_post_path
     end
   end
 
@@ -35,10 +34,9 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 		
 		if @post.update_attributes(params[:post])
-		  flash[:notice] = 'Post Successfully Update!'
 		  redirect_to post_path(@post)
 		else
-		  format.html {render :action => "edit"}
+      redirect_to edit_post_path(@post) 
 	  end
 	end
 

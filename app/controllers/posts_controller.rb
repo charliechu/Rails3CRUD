@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_filter :find_Post, :only => [:show, :edit, :update, :destroy]
+  
   # First to show
   def index
     # Catch all the data
@@ -22,15 +24,14 @@ class PostsController < ApplicationController
   
   # By using find method to find the data
   def show
-    @post = Post.find(params[:id])
+    
   end
   
   # 1. Find the data 2. Update to database
   def edit
-    @post = Post.find(params[:id])
+    
   end
   def update
-    @post = Post.find(params[:id])
 		
 		if @post.update_attributes(params[:post])
 		  redirect_to post_path(@post)
@@ -45,4 +46,10 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to posts_path
   end
+  
+  protected 
+  def find_Post
+    @post = Post.find(params[:id])
+  end
+  
 end

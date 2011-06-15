@@ -13,7 +13,7 @@ class PostsController < ApplicationController
 	# sending by new.html.erb, initial a new post object and save it, then redirect to indext page 
 	def create
 	  @post = Post.new(params[:post])
-	  if @post.save
+    if @post.save
       redirect_to post_path(@post)
     else
       redirect_to new_post_path

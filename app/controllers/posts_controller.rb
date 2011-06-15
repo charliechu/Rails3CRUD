@@ -1,21 +1,24 @@
 class PostsController < ApplicationController
-	# First to show
-	def index
+  # First to show
+  def index
 		# Catch all the data
 		@posts = Post.all
 	end
 
 	# New a empty Post object
-	def new
-		@post = Post.new
+  def new
+    @post = Post.new
 	end
 	
 	# sending by new.html.erb, initial a new post object and save it, then redirect to indext page 
 	def create
 		@post = Post.new(params[:post])
-		@post.save
-
-		redirect_to posts_path
+		if @post.save
+      flash[:notice] = 'Post Successfully!'
+      redirect_to post_path(@post)
+    else
+      render :action => "new"
+	  end
 	end
 
 	# By using find method to find the data
@@ -30,9 +33,13 @@ class PostsController < ApplicationController
 
 	def update
 		@post = Post.find(params[:id])
-		@post.update_attributes(params[:post])
-
-		redirect_to post_path(@post)
+		
+		if @post.update_attributes(params[:post])
+		  flash[:notice] = 'Post Successfully Update!'
+		  redirect_to post_path(@post)
+		else
+		  format.html {render :action => "edit"}
+	  end
 	end
 
 
@@ -43,5 +50,4 @@ class PostsController < ApplicationController
 
 		redirect_to posts_path
 	end
-
 end
